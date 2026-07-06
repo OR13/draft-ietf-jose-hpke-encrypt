@@ -6,13 +6,13 @@ JOSE                                                            T. Reddy
 Internet-Draft                                                     Nokia
 Updates: 7516 (if approved)                                H. Tschofenig
 Intended status: Standards Track                                UniBw M.
-Expires: 17 December 2026                                    A. Banerjee
+Expires: 7 January 2027                                      A. Banerjee
                                                                    Nokia
                                                                O. Steele
                                                             Tradeverifyd
                                                                 M. Jones
                                                   Self-Issued Consulting
-                                                            15 June 2026
+                                                             6 July 2026
 
 
   Use of Hybrid Public Key Encryption (HPKE) with JSON Web Encryption
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 December 2026.
+   This Internet-Draft will expire on 7 January 2027.
 
 Copyright Notice
 
@@ -102,12 +102,46 @@ Table of Contents
      10.2.  JWT Best Current Practices
    11. IANA Considerations
      11.1.  JSON Web Signature and Encryption Algorithms
+       11.1.1.  HPKE-0
+       11.1.2.  HPKE-1
+       11.1.3.  HPKE-2
+       11.1.4.  HPKE-3
+       11.1.5.  HPKE-4
+       11.1.6.  HPKE-5
+       11.1.7.  HPKE-6
+       11.1.8.  HPKE-7
+       11.1.9.  HPKE-0-KE
+       11.1.10. HPKE-1-KE
+       11.1.11. HPKE-2-KE
+       11.1.12. HPKE-3-KE
+       11.1.13. HPKE-4-KE
+       11.1.14. HPKE-5-KE
+       11.1.15. HPKE-6-KE
+       11.1.16. HPKE-7-KE
      11.2.  JSON Web Signature and Encryption Header Parameters
+       11.2.1.  ek
+       11.2.2.  psk_id
    12. Summary of Updates to RFC 7516 (JWE)
    13. References
      13.1.  Normative References
      13.2.  Informative References
    Appendix A.  Test Vectors
+     A.1.  HPKE-0
+     A.2.  HPKE-0-KE
+     A.3.  HPKE-1
+     A.4.  HPKE-1-KE
+     A.5.  HPKE-2
+     A.6.  HPKE-2-KE
+     A.7.  HPKE-3
+     A.8.  HPKE-3-KE
+     A.9.  HPKE-4
+     A.10. HPKE-4-KE
+     A.11. HPKE-5
+     A.12. HPKE-5-KE
+     A.13. HPKE-6
+     A.14. HPKE-6-KE
+     A.15. HPKE-7
+     A.16. HPKE-7-KE
    Acknowledgments
    Document History
    Authors' Addresses
@@ -760,16 +794,18 @@ Table of Contents
 
    HPKE assumes the sender is in possession of the public key of the
    recipient and HPKE JOSE makes the same assumption.  Hence, some form
-   of public key distribution mechanism is assumed to exist but outside
-   the scope of this document.
+   of public key distribution mechanism is assumed to exist but is
+   outside the scope of this document.
 
    HPKE in Base mode does not provide proof of sender origin as part of
    the HPKE KEM.  PSK mode authenticates the sender as a holder of the
    pre-shared key (see Section 9.1 of [I-D.ietf-hpke-hpke]).
 
-   HPKE relies on a source of randomness being available on the device.
-   In Key Agreement with Key Wrapping mode, the CEK has to be randomly
-   generated.  The guidance on randomness in [RFC8937] applies.
+   This specification relies on a source of randomness being available
+   on the device.  When used, the CEK has to be randomly generated.
+   Likewise, when used, the JWE Initialization Vector has to be randomly
+   generated.  In both cases, the guidance on randomness in [RFC8937]
+   applies.
 
 10.1.  Key Management
 
@@ -1134,8 +1170,9 @@ Table of Contents
 
 12.  Summary of Updates to RFC 7516 (JWE)
 
-   This specification updates JSON Web Encryption (JWE) [RFC7516] as
-   follows:
+   This specification updates JSON Web Encryption (JWE) [RFC7516] to
+   enable the use of Integrated Encryption.  The specific updates made
+   are as follows:
 
    *  Adds the Integrated Encryption Key Management Mode and
       correspondingly updates the Key Management Mode definition
@@ -1144,12 +1181,15 @@ Table of Contents
    *  Updates the "enc" header parameter to be absent when Integrated
       Encryption is used in (Section 4).
 
-   *  Replaces the Message Encryption procedure (Section 7.1).
+   *  Replaces the Message Encryption procedure (Section 7.1), adding
+      Integrated Encryption.
 
-   *  Replaces the Message Decryption procedure (Section 7.2).
+   *  Replaces the Message Decryption procedure (Section 7.2), adding
+      Integrated Encryption.
 
    *  Updates the methods for distinguishing between JWS and JWE objects
-      (Section 8).
+      (Section 8) because Integrated Encryption does not use the "enc"
+      header parameter.
 
 13.  References
 
@@ -1200,9 +1240,9 @@ Table of Contents
               Tschofenig, H., Jones, M. B., Steele, O., Daisuke, A., and
               L. Lundblade, "Use of Hybrid Public-Key Encryption (HPKE)
               with CBOR Object Signing and Encryption (COSE)", Work in
-              Progress, Internet-Draft, draft-ietf-cose-hpke-25, 7 April
+              Progress, Internet-Draft, draft-ietf-cose-hpke-26, 4 July
               2026, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-hpke-25>.
+              cose-hpke-26>.
 
    [IANA.HPKE]
               IANA, "Hybrid Public Key Encryption (HPKE)", n.d.,
@@ -2093,12 +2133,17 @@ A.16.  HPKE-7-KE
 Acknowledgments
 
    This specification leverages text from [I-D.ietf-cose-hpke].  We
-   would like to thank Richard Barnes, Brian Campbell, Matt Chanda, Deb
-   Cooley, David Dong, Ilari Liusvaara, Neil Madden, Aaron Parecki,
-   Filip Skokan, Sebastian Stenzel, and Peter Yee for their
-   contributions to the specification.
+   would like to thank Richard Barnes, Mike Bishop, Brian Campbell, Matt
+   Chanda, Deb Cooley, David Dong, Christopher Inacio, Paul Kyzivat,
+   Ilari Liusvaara, Neil Madden, Aaron Parecki, Filip Skokan, Sebastian
+   Stenzel, �ric Vyncke, and Peter Yee for their contributions to the
+   specification.
 
 Document History
+
+   -21
+
+   *  Addressed review comments by Mike Bishop and Christopher Inacio.
 
    -20
 
