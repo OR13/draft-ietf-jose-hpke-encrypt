@@ -114,10 +114,8 @@ Table of Contents
        11.1.10. HPKE-1-KE
        11.1.11. HPKE-2-KE
        11.1.12. HPKE-3-KE
-       11.1.13. HPKE-4-KE
-       11.1.14. HPKE-5-KE
-       11.1.15. HPKE-6-KE
-       11.1.16. HPKE-7-KE
+       11.1.13. HPKE-5-KE
+       11.1.14. HPKE-7-KE
      11.2.  JSON Web Signature and Encryption Header Parameters
        11.2.1.  ek
        11.2.2.  psk_id
@@ -135,13 +133,11 @@ Table of Contents
      A.7.  HPKE-3
      A.8.  HPKE-3-KE
      A.9.  HPKE-4
-     A.10. HPKE-4-KE
-     A.11. HPKE-5
-     A.12. HPKE-5-KE
-     A.13. HPKE-6
-     A.14. HPKE-6-KE
-     A.15. HPKE-7
-     A.16. HPKE-7-KE
+     A.10. HPKE-5
+     A.11. HPKE-5-KE
+     A.12. HPKE-6
+     A.13. HPKE-7
+     A.14. HPKE-7-KE
    Acknowledgments
    Document History
    Authors' Addresses
@@ -452,35 +448,29 @@ Table of Contents
    The following JWE algorithms using HPKE are defined for use with Key
    Encryption as the Key Management Mode:
 
-      +===========+===============+=============+==================+
-      | "alg"     | HPKE KEM      | HPKE KDF    | HPKE AEAD        |
-      +===========+===============+=============+==================+
-      | HPKE-0-KE | DHKEM(P-256,  | HKDF-SHA256 | AES-128-GCM      |
-      |           | HKDF-SHA256)  |             |                  |
-      +-----------+---------------+-------------+------------------+
-      | HPKE-1-KE | DHKEM(P-384,  | HKDF-SHA384 | AES-256-GCM      |
-      |           | HKDF-SHA384)  |             |                  |
-      +-----------+---------------+-------------+------------------+
-      | HPKE-2-KE | DHKEM(P-521,  | HKDF-SHA512 | AES-256-GCM      |
-      |           | HKDF-SHA512)  |             |                  |
-      +-----------+---------------+-------------+------------------+
-      | HPKE-3-KE | DHKEM(X25519, | HKDF-SHA256 | AES-128-GCM      |
-      |           | HKDF-SHA256)  |             |                  |
-      +-----------+---------------+-------------+------------------+
-      | HPKE-4-KE | DHKEM(X25519, | HKDF-SHA256 | ChaCha20Poly1305 |
-      |           | HKDF-SHA256)  |             |                  |
-      +-----------+---------------+-------------+------------------+
-      | HPKE-5-KE | DHKEM(X448,   | HKDF-SHA512 | AES-256-GCM      |
-      |           | HKDF-SHA512)  |             |                  |
-      +-----------+---------------+-------------+------------------+
-      | HPKE-6-KE | DHKEM(X448,   | HKDF-SHA512 | ChaCha20Poly1305 |
-      |           | HKDF-SHA512)  |             |                  |
-      +-----------+---------------+-------------+------------------+
-      | HPKE-7-KE | DHKEM(P-256,  | HKDF-SHA256 | AES-256-GCM      |
-      |           | HKDF-SHA256)  |             |                  |
-      +-----------+---------------+-------------+------------------+
+   +===========+===========================+=============+=============+
+   | "alg"     | HPKE KEM                  | HPKE KDF    | HPKE AEAD   |
+   +===========+===========================+=============+=============+
+   | HPKE-0-KE | DHKEM(P-256,              | HKDF-SHA256 | AES-128-GCM |
+   |           | HKDF-SHA256)              |             |             |
+   +-----------+---------------------------+-------------+-------------+
+   | HPKE-1-KE | DHKEM(P-384,              | HKDF-SHA384 | AES-256-GCM |
+   |           | HKDF-SHA384)              |             |             |
+   +-----------+---------------------------+-------------+-------------+
+   | HPKE-2-KE | DHKEM(P-521,              | HKDF-SHA512 | AES-256-GCM |
+   |           | HKDF-SHA512)              |             |             |
+   +-----------+---------------------------+-------------+-------------+
+   | HPKE-3-KE | DHKEM(X25519,             | HKDF-SHA256 | AES-128-GCM |
+   |           | HKDF-SHA256)              |             |             |
+   +-----------+---------------------------+-------------+-------------+
+   | HPKE-5-KE | DHKEM(X448,               | HKDF-SHA512 | AES-256-GCM |
+   |           | HKDF-SHA512)              |             |             |
+   +-----------+---------------------------+-------------+-------------+
+   | HPKE-7-KE | DHKEM(P-256,              | HKDF-SHA256 | AES-256-GCM |
+   |           | HKDF-SHA256)              |             |             |
+   +-----------+---------------------------+-------------+-------------+
 
-            Table 2: Algorithms using HPKE for Key Encryption
+             Table 2: Algorithms using HPKE for Key Encryption
 
    The HPKE KEM, KDF, and AEAD values are chosen from the IANA HPKE
    registry [IANA.HPKE].
@@ -778,9 +768,9 @@ Table of Contents
          +--------------------------------------+-------+--------+
          | HPKE-2, HPKE-2-KE                    | EC    | P-521  |
          +--------------------------------------+-------+--------+
-         | HPKE-3, HPKE-3-KE, HPKE-4, HPKE-4-KE | OKP   | X25519 |
+         | HPKE-3, HPKE-3-KE, HPKE-4            | OKP   | X25519 |
          +--------------------------------------+-------+--------+
-         | HPKE-5, HPKE-5-KE, HPKE-6, HPKE-6-KE | OKP   | X448   |
+         | HPKE-5, HPKE-5-KE, HPKE-6            | OKP   | X448   |
          +--------------------------------------+-------+--------+
 
           Table 3: JWK Types and Curves for JWE HPKE Ciphersuites
@@ -1067,25 +1057,7 @@ Table of Contents
 
    *  Algorithm Analysis Documents(s): Section 5 of [I-D.ietf-hpke-hpke]
 
-11.1.13.  HPKE-4-KE
-
-   *  Algorithm Name: HPKE-4-KE
-
-   *  Algorithm Description: Key Encryption with HPKE using
-      DHKEM(X25519, HKDF-SHA256) KEM, HKDF-SHA256 KDF, and
-      ChaCha20Poly1305 AEAD
-
-   *  Algorithm Usage Location(s): "alg"
-
-   *  JOSE Implementation Requirements: Optional
-
-   *  Change Controller: IETF
-
-   *  Specification Document(s): Section 6.2 of [[ this specification ]]
-
-   *  Algorithm Analysis Documents(s): Section 5 of [I-D.ietf-hpke-hpke]
-
-11.1.14.  HPKE-5-KE
+11.1.13.  HPKE-5-KE
 
    *  Algorithm Name: HPKE-5-KE
 
@@ -1102,24 +1074,7 @@ Table of Contents
 
    *  Algorithm Analysis Documents(s): Section 5 of [I-D.ietf-hpke-hpke]
 
-11.1.15.  HPKE-6-KE
-
-   *  Algorithm Name: HPKE-6-KE
-
-   *  Algorithm Description: Key Encryption with HPKE using DHKEM(X448,
-      HKDF-SHA512) KEM, HKDF-SHA512 KDF, and ChaCha20Poly1305 AEAD
-
-   *  Algorithm Usage Location(s): "alg"
-
-   *  JOSE Implementation Requirements: Optional
-
-   *  Change Controller: IETF
-
-   *  Specification Document(s): Section 6.2 of [[ this specification ]]
-
-   *  Algorithm Analysis Documents(s): Section 5 of [I-D.ietf-hpke-hpke]
-
-11.1.16.  HPKE-7-KE
+11.1.14.  HPKE-7-KE
 
    *  Algorithm Name: HPKE-7-KE
 
@@ -1764,58 +1719,7 @@ A.9.  HPKE-4
 
                 Figure 27: HPKE-4 JWE Compact Serialization
 
-A.10.  HPKE-4-KE
-
-   {
-     "kty": "OKP",
-     "crv": "X25519",
-     "x": "1GM_SyXQMRrl63zxfzLXMceEBl0sCiz-zelITF6RNzA",
-     "d": "KHRpxZE4_rYNJ1CS_UuciujETp8lSLhI9QvBprbSJrA",
-     "alg": "HPKE-4-KE",
-     "use": "enc",
-     "kid": "YJ4yjnwAPBiPg-s9bFLjhl_SAyxXNkpe2bA9Gl1KkTw"
-   }
-
-                      Figure 28: HPKE-4-KE Private JWK
-
-   NOTE: '\' line wrapping per RFC 8792
-
-   {
-     "protected": "eyJhbGciOiJIUEtFLTQtS0UiLCJraWQiOiJZSjR5am53QVBCaVBn\
-       LXM5YkZMamhsX1NBeXhYTmtwZTJiQTlHbDFLa1R3IiwiZW5jIjoiQTI1NkdDTSIs\
-       ImVrIjoiaFlQREVkNVFHX1p0N2plUVJlUWV5UXM2alhnbTdzSG5hOEdCWGM1emlH\
-       ZyJ9",
-     "aad": "VGhlIEZlbGxvd3NoaXAgb2YgdGhlIFJpbmc",
-     "iv": "Q6ghT_T-ekzU-ubv",
-     "ciphertext": "FMwgTqXftAE2lENAgnoQD9tObqWUWHATOTl7SXrUqmwX0jjhXOb\
-       cRjFT73QFH9KVdcEzQROLAIWnrEnyfCbjwhM6Leiwq-xw8VgHS3f9xxCcS407gyZ\
-       0Sv8qAPgsnusNUEBOQ5lxXJCNNZ_Z_CANxOCct5CiZUtZumTMp2x-vzIkHWxtXG1\
-       NRbLgRbHJg9SVBs69-6q7Lp8vGJKHkivtDNVVOfuyGC_GM8HX4bdmadsQpCa_spT\
-       8g5RVZ13TKqrBYc9u2HJNt7km0lCqQHCM0rBODrmAvCNuTCWp-Cwklkbg19ovTzA\
-       skfXJFvxAhj0ipTaWKGXVPMSdAh1fhsxdyl03HoS4bN8zMoT-NYg",
-     "tag": "LG7QdrXWME2XEyln5Hu5SA",
-     "encrypted_key": "MgJbcJi5vnrj23QyoNwOq_I_w0K4vsvDnctDl0LCKC35jWTG\
-       0EQA7dCYQj8JTh1F"
-   }
-
-           Figure 29: HPKE-4-KE Flattened JWE JSON Serialization
-
-   NOTE: '\' line wrapping per RFC 8792
-
-   eyJhbGciOiJIUEtFLTQtS0UiLCJraWQiOiJZSjR5am53QVBCaVBnLXM5YkZMamhsX1NB\
-   eXhYTmtwZTJiQTlHbDFLa1R3IiwiZW5jIjoiQTI1NkdDTSIsImVrIjoiOWQ0RG1iRjln\
-   d0pjYjNGUzdKeDREMzJmLUt5ajVkR2trUEwxZV9VdGRsOCJ9.OfsTC0qyAC2nF2yusu0\
-   Dsuz5Q_8Dj8ZJTJ4849pE_ya5c4hdCKx3Nsi2iDX6Ihuw.tkzljZ9VnaasoZgP.UJGEL\
-   opuWvUqOX5_FwOylfiRVGDBZ9MEuGKP5WZryuC_C4Jabm375-9FPqe_Lq5p6nCX8ANmK\
-   Gz9l0ASWN3tn71NfgijAbBAWhM9T-KZcnrubObZGT7yw73UddI-k8aY2J4zO2j911JbB\
-   JHrk6CmDHZHeV_FQBDngPB5fg-0GY7SXu66vEBJJVn1nYgDTxVgldAgOEryfwweOghqJ\
-   t0Or4nCJgI0cFdEXxz9yPMSXsD5kKH_ae12iuNj8QGRj7CL0vVoQ81lbTvLhOc5_OKp0\
-   B17V2WIEyV4in6FHE8wmw4TirSnNu-TT9dMDog5gEMItK2i39HHimtm8JTEBPWfOw9sC\
-   mMvkvk034z_yng.fQ0RkjaufCkmT_YkbHcn5Q
-
-               Figure 30: HPKE-4-KE JWE Compact Serialization
-
-A.11.  HPKE-5
+A.10.  HPKE-5
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -1831,7 +1735,7 @@ A.11.  HPKE-5
      "kid": "VlMlFEMhh4sRZdmn0SZIcar1R4xs_g1lj04VbypUALQ"
    }
 
-                       Figure 31: HPKE-5 Private JWK
+                       Figure 28: HPKE-5 Private JWK
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -1850,7 +1754,7 @@ A.11.  HPKE-5
        xreLHSNb9"
    }
 
-             Figure 32: HPKE-5 Flattened JWE JSON Serialization
+             Figure 29: HPKE-5 Flattened JWE JSON Serialization
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -1864,9 +1768,9 @@ A.11.  HPKE-5
    odytAHanhU3-1EBPCCZKInagtCOnpmbQ49UMkts0SqJjoH1kzirqwaE6qN2uFz1pResn\
    LntUc.
 
-                Figure 33: HPKE-5 JWE Compact Serialization
+                Figure 30: HPKE-5 JWE Compact Serialization
 
-A.12.  HPKE-5-KE
+A.11.  HPKE-5-KE
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -1882,7 +1786,7 @@ A.12.  HPKE-5-KE
      "kid": "aaWgexNI9cl1t1km3gXz-cWbaK3fSGZrQnF53D9PSaQ"
    }
 
-                      Figure 34: HPKE-5-KE Private JWK
+                      Figure 31: HPKE-5-KE Private JWK
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -1904,7 +1808,7 @@ A.12.  HPKE-5-KE
        xcz8_LWABrUkAmYr"
    }
 
-           Figure 35: HPKE-5-KE Flattened JWE JSON Serialization
+           Figure 32: HPKE-5-KE Flattened JWE JSON Serialization
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -1920,9 +1824,9 @@ A.12.  HPKE-5-KE
    DNCLRo0QGoIod1Twjqcl7kONuEHRtRnLVXrcmiGxcytcIMKS5Kib6nItI.D_0s3aOb2o\
    hF7fLlxSR7Ew
 
-               Figure 36: HPKE-5-KE JWE Compact Serialization
+               Figure 33: HPKE-5-KE JWE Compact Serialization
 
-A.13.  HPKE-6
+A.12.  HPKE-6
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -1938,7 +1842,7 @@ A.13.  HPKE-6
      "kid": "bjp4-nQuEki4p5Z7ewD3ScjtBwu3glF6OdfloVMoiew"
    }
 
-                       Figure 37: HPKE-6 Private JWK
+                       Figure 34: HPKE-6 Private JWK
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -1957,7 +1861,7 @@ A.13.  HPKE-6
        uz5kUm2Zz"
    }
 
-             Figure 38: HPKE-6 Flattened JWE JSON Serialization
+             Figure 35: HPKE-6 Flattened JWE JSON Serialization
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -1971,65 +1875,9 @@ A.13.  HPKE-6
    c_Y5xdqaLErGBgUNpNIqlN4wAuuiB5VJafKZ0jzadtMlFoxsnPTh1Xl02sgR9ZsQl6S-\
    aEdFH.
 
-                Figure 39: HPKE-6 JWE Compact Serialization
+                Figure 36: HPKE-6 JWE Compact Serialization
 
-A.14.  HPKE-6-KE
-
-   NOTE: '\' line wrapping per RFC 8792
-
-   {
-     "kty": "OKP",
-     "crv": "X448",
-     "x": "xyUAS71Bmja8Pq141pc1z965w6_RGV-QxfN_tFm1Jj4LsApo3Cn9xnWwPJRG\
-       FnS10LPZeniEcmQ",
-     "d": "r0PYBotYGdlzz8YM3OvV8PYf0zHbdhPJ--UJRs_asGTTQgIS7HYRo9AVPDnA\
-       s5_cU8EUNDfB4NQ",
-     "alg": "HPKE-6-KE",
-     "use": "enc",
-     "kid": "aaGcRsxhcVOUTm89NpDuhDFh3HZRq3nyf7nabjmBEJ0"
-   }
-
-                      Figure 40: HPKE-6-KE Private JWK
-
-   NOTE: '\' line wrapping per RFC 8792
-
-   {
-     "protected": "eyJhbGciOiJIUEtFLTYtS0UiLCJraWQiOiJhYUdjUnN4aGNWT1VU\
-       bTg5TnBEdWhERmgzSFpScTNueWY3bmFiam1CRUowIiwiZW5jIjoiQTI1NkdDTSIs\
-       ImVrIjoiYzVjVkJTTnhUNU5qTlFKS25HajZMV1IyclpuaXMyUnRCUHNJSGtQYVMt\
-       ZWFCYnpUTklXYlVGNE1PR2l3enh6MDhfTHJGTXN5bWg4In0",
-     "aad": "VGhlIEZlbGxvd3NoaXAgb2YgdGhlIFJpbmc",
-     "iv": "vIHuDIIkCoXzAUCF",
-     "ciphertext": "TQQx3bJZJC6GTwybznjJc9BeZBDqj6oy3HdQ8OGglANmxkmKuNC\
-       FENAhZuOGqsOZ1TxazCY778DWMAakgTyukwLAIpXJvYSgFz7qOcuUqEWybA3Uhp4\
-       qDGI8Hw5XePnMU76VcQUBv2guiXdK29_IE8cV9K9owncFbolspu5l0ElsCiTASYg\
-       as-wpHC2gLy4MEM0klMAXgMhH8oKBU2YebIzoD7Q6pOWRXBlxswBTTOOJTVWA3nP\
-       UgPKdBo_nuADGbTXpW9K2d8q6ZfhU2Zgco_aazFPmLgc52b_CJal3BCXSz4PbHpJ\
-       bDooyxnSOuUKnF7Iov7LAgFoWZ_EhyZpPOQwQUaJGtleIfl4X0nU",
-     "tag": "VXv7QrkilaU7tMZx7Y1KGQ",
-     "encrypted_key": "jCvGak_aQM_7pjrZe-pS9DAjmeJI2dPvlK2kEvrR2fi1Nnxy\
-       EsVVydF3rE286qcr"
-   }
-
-           Figure 41: HPKE-6-KE Flattened JWE JSON Serialization
-
-   NOTE: '\' line wrapping per RFC 8792
-
-   eyJhbGciOiJIUEtFLTYtS0UiLCJraWQiOiJhYUdjUnN4aGNWT1VUbTg5TnBEdWhERmgz\
-   SFpScTNueWY3bmFiam1CRUowIiwiZW5jIjoiQTI1NkdDTSIsImVrIjoiOTNaeTV6US1L\
-   Z3hicDczVkU2T3FNVDNvWHZ3UmVPRXZqRmV4SXp0ZUI0YWxaRFZoNVl6d1hjNkF2ZXox\
-   cjY2aDF6dEJWUVM1a3FRIn0.ifuYkJ_pL5swYDfVIHTD-dymgM-PgNE8qeottcXB4Gfo\
-   lXRVXpLl3MWQODauXXuH.l3wqntOXZoH82ooV.xTRo8Q30t2w-eKkFnswtD5U8ZsqbV-\
-   Wn0CpcNu2GmpyruYVpXtmIwyhk0_DQRg2-SZlU6X7ObAQpO-DpQw7mmqymDzQO_B44ZG\
-   51GYELYlhRXFrlTrF-jQO1gB-vVHl4-A_MerfkmZ0CVq-c0uNp7xhKSQu7cWnyZEVjR1\
-   dilOM744LAYz50diqeoTjVDq4gK6t5G9kisZdZ03h-xDlr9QWgr-bF6IB7ghwghKitIg\
-   B72mFciIVUypHzJsc73ZkyjBU-8eZq7A-JhcjWgIWVQQKfH-ARjkEMa7G49-eA-r_m9E\
-   hw57GFI3bWbpYZ2Hea5q88YFH0GcmB9yiJ7X-iefOqcKI8GKGNPGXzjag.QvGIJipHdQ\
-   xrP41yjQsoZA
-
-               Figure 42: HPKE-6-KE JWE Compact Serialization
-
-A.15.  HPKE-7
+A.13.  HPKE-7
 
    {
      "kty": "EC",
@@ -2042,7 +1890,7 @@ A.15.  HPKE-7
      "kid": "YGdLPiZno0vV3kJKu4kEMQEjK3_upFF2D_lFDf1FFwk"
    }
 
-                       Figure 43: HPKE-7 Private JWK
+                       Figure 37: HPKE-7 Private JWK
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -2061,7 +1909,7 @@ A.15.  HPKE-7
        TUJa3jeVF"
    }
 
-             Figure 44: HPKE-7 Flattened JWE JSON Serialization
+             Figure 38: HPKE-7 Flattened JWE JSON Serialization
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -2075,9 +1923,9 @@ A.15.  HPKE-7
    sLe-nfeB_9iUe-2nZswWS2qndvz6ZANF9Kj2QMJXCLN7RRSLLjP58sxoyDZC8nRBdJxs\
    JKXc8G5eYFLJ1Bc4w.
 
-                Figure 45: HPKE-7 JWE Compact Serialization
+                Figure 39: HPKE-7 JWE Compact Serialization
 
-A.16.  HPKE-7-KE
+A.14.  HPKE-7-KE
 
    {
      "kty": "EC",
@@ -2090,7 +1938,7 @@ A.16.  HPKE-7-KE
      "kid": "SMa7O1lSKSi2LJCin1PfZRYA7KGKky5oSfaMO9UOYWA"
    }
 
-                      Figure 46: HPKE-7-KE Private JWK
+                      Figure 40: HPKE-7-KE Private JWK
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -2112,7 +1960,7 @@ A.16.  HPKE-7-KE
        t-RPfaqHKITbK8ng"
    }
 
-           Figure 47: HPKE-7-KE Flattened JWE JSON Serialization
+           Figure 41: HPKE-7-KE Flattened JWE JSON Serialization
 
    NOTE: '\' line wrapping per RFC 8792
 
@@ -2128,7 +1976,7 @@ A.16.  HPKE-7-KE
    92qNb1rWjhGij7lpff4eA6BuyW2NX2baxB5qAZB4KZlFT6w2_LXzytVVEdogi7zmfgmS\
    R4C-Y.Bdp4d-yiZdsAul1rM2jmAA
 
-               Figure 48: HPKE-7-KE JWE Compact Serialization
+               Figure 42: HPKE-7-KE JWE Compact Serialization
 
 Acknowledgments
 
@@ -2140,6 +1988,17 @@ Acknowledgments
    specification.
 
 Document History
+
+   -22
+
+   *  Removed HPKE-4-KE and HPKE-6-KE at the request of Deb Cooley.
+      They were:
+
+      -  HPKE-4-KE: Key Encryption with HPKE using DHKEM(X25519, HKDF-
+         SHA256) KEM, HKDF-SHA256 KDF, and ChaCha20Poly1305 AEAD
+
+      -  HPKE-6-KE: Key Encryption with HPKE using DHKEM(X448, HKDF-
+         SHA512) KEM, HKDF-SHA512 KDF, and ChaCha20Poly1305 AEAD
 
    -21
 
