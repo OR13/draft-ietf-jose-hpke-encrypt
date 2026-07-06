@@ -379,9 +379,7 @@ Key Encryption as the Key Management Mode:
 | HPKE-1-KE | DHKEM(P-384, HKDF-SHA384)  | HKDF-SHA384 | AES-256-GCM      |
 | HPKE-2-KE | DHKEM(P-521, HKDF-SHA512)  | HKDF-SHA512 | AES-256-GCM      |
 | HPKE-3-KE | DHKEM(X25519, HKDF-SHA256) | HKDF-SHA256 | AES-128-GCM      |
-| HPKE-4-KE | DHKEM(X25519, HKDF-SHA256) | HKDF-SHA256 | ChaCha20Poly1305 |
 | HPKE-5-KE | DHKEM(X448, HKDF-SHA512)   | HKDF-SHA512 | AES-256-GCM      |
-| HPKE-6-KE | DHKEM(X448, HKDF-SHA512)   | HKDF-SHA512 | ChaCha20Poly1305 |
 | HPKE-7-KE | DHKEM(P-256, HKDF-SHA256)  | HKDF-SHA256 | AES-256-GCM      |
 {: #ciphersuite-ke-algs title="Algorithms using HPKE for Key Encryption"}
 
@@ -713,8 +711,8 @@ The valid combinations of the
 | HPKE-0, HPKE-0-KE, HPKE-7, HPKE-7-KE | EC    | P-256  |
 | HPKE-1, HPKE-1-KE                    | EC    | P-384  |
 | HPKE-2, HPKE-2-KE                    | EC    | P-521  |
-| HPKE-3, HPKE-3-KE, HPKE-4, HPKE-4-KE | OKP   | X25519 |
-| HPKE-5, HPKE-5-KE, HPKE-6, HPKE-6-KE | OKP   | X448   |
+| HPKE-3, HPKE-3-KE, HPKE-4            | OKP   | X25519 |
+| HPKE-5, HPKE-5-KE, HPKE-6            | OKP   | X448   |
 {: #ciphersuite-kty-crv title="JWK Types and Curves for JWE HPKE Ciphersuites"}
 
 Examples of JWKs for each algorithm are provided in {{test-vectors}}.
@@ -895,30 +893,10 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Specification Document(s): {{ke-algs}} of [[ this specification ]]
 - Algorithm Analysis Documents(s): {{Section 5 of I-D.ietf-hpke-hpke}}
 
-### HPKE-4-KE
-
-- Algorithm Name: HPKE-4-KE
-- Algorithm Description: Key Encryption with HPKE using DHKEM(X25519, HKDF-SHA256) KEM, HKDF-SHA256 KDF, and ChaCha20Poly1305 AEAD
-- Algorithm Usage Location(s): "alg"
-- JOSE Implementation Requirements: Optional
-- Change Controller: IETF
-- Specification Document(s): {{ke-algs}} of [[ this specification ]]
-- Algorithm Analysis Documents(s): {{Section 5 of I-D.ietf-hpke-hpke}}
-
 ### HPKE-5-KE
 
 - Algorithm Name: HPKE-5-KE
 - Algorithm Description: Key Encryption with HPKE using DHKEM(X448, HKDF-SHA512) KEM, HKDF-SHA512 KDF, and AES-256-GCM AEAD
-- Algorithm Usage Location(s): "alg"
-- JOSE Implementation Requirements: Optional
-- Change Controller: IETF
-- Specification Document(s): {{ke-algs}} of [[ this specification ]]
-- Algorithm Analysis Documents(s): {{Section 5 of I-D.ietf-hpke-hpke}}
-
-### HPKE-6-KE
-
-- Algorithm Name: HPKE-6-KE
-- Algorithm Description: Key Encryption with HPKE using DHKEM(X448, HKDF-SHA512) KEM, HKDF-SHA512 KDF, and ChaCha20Poly1305 AEAD
 - Algorithm Usage Location(s): "alg"
 - JOSE Implementation Requirements: Optional
 - Change Controller: IETF
@@ -1146,23 +1124,6 @@ for this document.
 ~~~
 {: title="HPKE-4 JWE Compact Serialization" post="fold69hardleftdry"}
 
-## HPKE-4-KE
-
-~~~ json
-{::include examples/jwks/HPKE-4-KE.json}
-~~~
-{: title="HPKE-4-KE Private JWK" post="fold69hardsmart2dry"}
-
-~~~ json
-{::include examples/jwe/HPKE-4-KE-flattened.json}
-~~~
-{: title="HPKE-4-KE Flattened JWE JSON Serialization" post="fold69hardsmart2dry"}
-
-~~~
-{::include examples/jwe/HPKE-4-KE-compact.txt}
-~~~
-{: title="HPKE-4-KE JWE Compact Serialization" post="fold69hardleftdry"}
-
 ## HPKE-5
 
 ~~~ json
@@ -1213,23 +1174,6 @@ for this document.
 {::include examples/jwe/HPKE-6-compact.txt}
 ~~~
 {: title="HPKE-6 JWE Compact Serialization" post="fold69hardleftdry"}
-
-## HPKE-6-KE
-
-~~~ json
-{::include examples/jwks/HPKE-6-KE.json}
-~~~
-{: title="HPKE-6-KE Private JWK" post="fold69hardsmart2dry"}
-
-~~~ json
-{::include examples/jwe/HPKE-6-KE-flattened.json}
-~~~
-{: title="HPKE-6-KE Flattened JWE JSON Serialization" post="fold69hardsmart2dry"}
-
-~~~
-{::include examples/jwe/HPKE-6-KE-compact.txt}
-~~~
-{: title="HPKE-6-KE JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-7
 
@@ -1292,6 +1236,13 @@ for their contributions to the specification.
 
 # Document History
 {: numbered="false"}
+
+-22
+
+* Removed HPKE-4-KE and HPKE-6-KE at the request of Deb Cooley.  They were:
+
+  - HPKE-4-KE: Key Encryption with HPKE using DHKEM(X25519, HKDF-SHA256) KEM, HKDF-SHA256 KDF, and ChaCha20Poly1305 AEAD
+  - HPKE-6-KE: Key Encryption with HPKE using DHKEM(X448, HKDF-SHA512) KEM, HKDF-SHA512 KDF, and ChaCha20Poly1305 AEAD
 
 -21
 
