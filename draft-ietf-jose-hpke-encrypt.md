@@ -726,16 +726,17 @@ This specification uses HPKE, and the security considerations of
 
 HPKE assumes the sender is in possession of the public key of the recipient and
 HPKE JOSE makes the same assumption. Hence, some form of public key distribution
-mechanism is assumed to exist but outside the scope of this document.
+mechanism is assumed to exist but is outside the scope of this document.
 
 HPKE in Base mode does not provide proof of sender origin
 as part of the HPKE KEM. PSK mode authenticates the sender
 as a holder of the pre-shared key (see {{Section 9.1 of
 I-D.ietf-hpke-hpke}}).
 
-HPKE relies on a source of randomness being available on the device.
-In Key Agreement with Key Wrapping mode, the CEK has to be randomly generated.
-The guidance on randomness in {{RFC8937}} applies.
+This specification relies on a source of randomness being available on the device.
+When used, the CEK has to be randomly generated.
+Likewise, when used, the JWE Initialization Vector has to be randomly generated.
+In both cases, the guidance on randomness in {{RFC8937}} applies.
 
 ## Key Management
 
@@ -775,7 +776,6 @@ draft-ietf-oauth-8725bis.
 The following entries are added to the IANA "JSON Web Signature and Encryption Algorithms" registry {{IANA.JOSE}} established by {{RFC7518}}:
 
 ### HPKE-0
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-0
 - Algorithm Description: Integrated Encryption with HPKE using DHKEM(P-256, HKDF-SHA256) KEM, HKDF-SHA256 KDF, and AES-128-GCM AEAD
@@ -786,7 +786,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 6.1 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-1
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-1
 - Algorithm Description: Integrated Encryption with HPKE using DHKEM(P-384, HKDF-SHA384) KEM, HKDF-SHA384 KDF, and AES-256-GCM AEAD
@@ -797,7 +796,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 6.1 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-2
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-2
 - Algorithm Description: Integrated Encryption with HPKE using DHKEM(P-521, HKDF-SHA512) KEM, HKDF-SHA512 KDF, and AES-256-GCM AEAD
@@ -808,7 +806,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 6.1 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-3
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-3
 - Algorithm Description: Integrated Encryption with HPKE using DHKEM(X25519, HKDF-SHA256) KEM, HKDF-SHA256 KDF, and AES-128-GCM AEAD
@@ -819,7 +816,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 6.1 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-4
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-4
 - Algorithm Description: Integrated Encryption with HPKE using DHKEM(X25519, HKDF-SHA256) KEM, HKDF-SHA256 KDF, and ChaCha20Poly1305 AEAD
@@ -830,7 +826,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 6.1 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-5
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-5
 - Algorithm Description: Integrated Encryption with HPKE using DHKEM(X448, HKDF-SHA512) KEM, HKDF-SHA512 KDF, and AES-256-GCM AEAD
@@ -841,7 +836,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 6.1 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-6
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-6
 - Algorithm Description: Integrated Encryption with HPKE using DHKEM(X448, HKDF-SHA512) KEM, HKDF-SHA512 KDF, and ChaCha20Poly1305 AEAD
@@ -852,7 +846,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 6.1 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-7
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-7
 - Algorithm Description: Integrated Encryption with HPKE using DHKEM(P-256, HKDF-SHA256) KEM, HKDF-SHA256 KDF, and AES-256-GCM AEAD
@@ -863,7 +856,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 6.1 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-0-KE
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-0-KE
 - Algorithm Description: Key Encryption with HPKE using DHKEM(P-256, HKDF-SHA256) KEM, HKDF-SHA256 KDF, and AES-128-GCM AEAD
@@ -874,7 +866,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 5 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-1-KE
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-1-KE
 - Algorithm Description: Key Encryption with HPKE using DHKEM(P-384, HKDF-SHA384) KEM, HKDF-SHA384 KDF, and AES-256-GCM AEAD
@@ -885,7 +876,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 5 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-2-KE
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-2-KE
 - Algorithm Description: Key Encryption with HPKE using DHKEM(P-521, HKDF-SHA512) KEM, HKDF-SHA512 KDF, and AES-256-GCM AEAD
@@ -896,7 +886,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 5 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-3-KE
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-3-KE
 - Algorithm Description: Key Encryption with HPKE using DHKEM(X25519, HKDF-SHA256) KEM, HKDF-SHA256 KDF, and AES-128-GCM AEAD
@@ -907,7 +896,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 5 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-4-KE
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-4-KE
 - Algorithm Description: Key Encryption with HPKE using DHKEM(X25519, HKDF-SHA256) KEM, HKDF-SHA256 KDF, and ChaCha20Poly1305 AEAD
@@ -918,7 +906,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 5 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-5-KE
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-5-KE
 - Algorithm Description: Key Encryption with HPKE using DHKEM(X448, HKDF-SHA512) KEM, HKDF-SHA512 KDF, and AES-256-GCM AEAD
@@ -929,7 +916,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 5 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-6-KE
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-6-KE
 - Algorithm Description: Key Encryption with HPKE using DHKEM(X448, HKDF-SHA512) KEM, HKDF-SHA512 KDF, and ChaCha20Poly1305 AEAD
@@ -940,7 +926,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 - Algorithm Analysis Documents(s): {{Section 5 of I-D.ietf-hpke-hpke}}
 
 ### HPKE-7-KE
-{: toc="exclude"}
 
 - Algorithm Name: HPKE-7-KE
 - Algorithm Description: Key Encryption with HPKE using DHKEM(P-256, HKDF-SHA256) KEM, HKDF-SHA256 KDF, and AES-256-GCM AEAD
@@ -955,7 +940,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption A
 The following entries are added to the IANA "JSON Web Signature and Encryption Header Parameters" registry {{IANA.JOSE}}:
 
 ### ek
-{: toc="exclude"}
 
 - Header Parameter Name: "ek"
 - Header Parameter Description: A base64url-encoded encapsulated secret, as defined in {{Section 5 of I-D.ietf-hpke-hpke}}
@@ -964,7 +948,6 @@ The following entries are added to the IANA "JSON Web Signature and Encryption H
 - Specification Document(s): {{encapsulated-secrets}} of [[ this specification ]]
 
 ### psk_id
-{: toc="exclude"}
 
 - Header Parameter Name: "psk_id"
 - Header Parameter Description: A base64url-encoded key identifier (kid) for the pre-shared key, as defined in {{Section 5.1.2 of I-D.ietf-hpke-hpke}}
@@ -974,7 +957,9 @@ The following entries are added to the IANA "JSON Web Signature and Encryption H
 
 # Summary of Updates to RFC 7516 (JWE)
 
-This specification updates JSON Web Encryption (JWE) {{RFC7516}} as follows:
+This specification updates JSON Web Encryption (JWE) {{RFC7516}}
+to enable the use of Integrated Encryption.
+The specific updates made are as follows:
 
 - Adds the Integrated Encryption Key Management Mode and correspondingly
   updates the Key Management Mode definition ({{terminology}}).
@@ -982,12 +967,15 @@ This specification updates JSON Web Encryption (JWE) {{RFC7516}} as follows:
 - Updates the "enc" header parameter to be absent when
   Integrated Encryption is used in ({{overview}}).
 
-- Replaces the Message Encryption procedure ({{encryption}}).
+- Replaces the Message Encryption procedure ({{encryption}}),
+  adding Integrated Encryption.
 
-- Replaces the Message Decryption procedure ({{decryption}}).
+- Replaces the Message Decryption procedure ({{decryption}}),
+  adding Integrated Encryption.
 
 - Updates the methods for distinguishing between JWS and JWE objects
-  ({{distinguishing}}).
+  ({{distinguishing}})
+  because Integrated Encryption does not use the "enc" header parameter.
 
 --- back
 
@@ -1006,7 +994,6 @@ for this document.
 <!-- begin:test-vectors ; see README for regeneration instructions, do not edit -->
 
 ## HPKE-0
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-0.json}
@@ -1024,7 +1011,6 @@ for this document.
 {: title="HPKE-0 JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-0-KE
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-0-KE.json}
@@ -1042,7 +1028,6 @@ for this document.
 {: title="HPKE-0-KE JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-1
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-1.json}
@@ -1060,7 +1045,6 @@ for this document.
 {: title="HPKE-1 JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-1-KE
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-1-KE.json}
@@ -1078,7 +1062,6 @@ for this document.
 {: title="HPKE-1-KE JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-2
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-2.json}
@@ -1096,7 +1079,6 @@ for this document.
 {: title="HPKE-2 JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-2-KE
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-2-KE.json}
@@ -1114,7 +1096,6 @@ for this document.
 {: title="HPKE-2-KE JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-3
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-3.json}
@@ -1132,7 +1113,6 @@ for this document.
 {: title="HPKE-3 JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-3-KE
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-3-KE.json}
@@ -1150,7 +1130,6 @@ for this document.
 {: title="HPKE-3-KE JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-4
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-4.json}
@@ -1168,7 +1147,6 @@ for this document.
 {: title="HPKE-4 JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-4-KE
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-4-KE.json}
@@ -1186,7 +1164,6 @@ for this document.
 {: title="HPKE-4-KE JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-5
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-5.json}
@@ -1204,7 +1181,6 @@ for this document.
 {: title="HPKE-5 JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-5-KE
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-5-KE.json}
@@ -1222,7 +1198,6 @@ for this document.
 {: title="HPKE-5-KE JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-6
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-6.json}
@@ -1240,7 +1215,6 @@ for this document.
 {: title="HPKE-6 JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-6-KE
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-6-KE.json}
@@ -1258,7 +1232,6 @@ for this document.
 {: title="HPKE-6-KE JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-7
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-7.json}
@@ -1276,7 +1249,6 @@ for this document.
 {: title="HPKE-7 JWE Compact Serialization" post="fold69hardleftdry"}
 
 ## HPKE-7-KE
-{: toc="exclude"}
 
 ~~~ json
 {::include examples/jwks/HPKE-7-KE.json}
@@ -1301,21 +1273,29 @@ for this document.
 This specification leverages text from {{?I-D.ietf-cose-hpke}}.
 We would like to thank
 Richard Barnes,
+Mike Bishop,
 Brian Campbell,
 Matt Chanda,
 Deb Cooley,
 David Dong,
+Christopher Inacio,
+Paul Kyzivat,
 Ilari Liusvaara,
 Neil Madden,
 Aaron Parecki,
 Filip Skokan,
 Sebastian Stenzel,
+Éric Vyncke,
 and
 Peter Yee
 for their contributions to the specification.
 
 # Document History
 {: numbered="false"}
+
+-21
+
+* Addressed review comments by Mike Bishop and Christopher Inacio.
 
 -20
 
